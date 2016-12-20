@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "关于我";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+<div style="margin: 2em 0 0; background-color: #FFFFFF;">
+    <blockquote class="layui-elem-quote">
+        <p>我们的宗旨：</p>
+        <p>
+            快乐学习：编个游戏就可以将数学、物理、英语等等知识进行整合，在创作中学习，在应用中学习，在玩中学习。
+
+            全球视野：作品可以和全世界分享，同时可以学习全世界优秀的作品。在学习中交流，在交流中学习，从而培养全球视野
+
+            掌控未来：未来社会是一个人工智能高度发展，机器人横行的时代，计算机素养将是未来重要技能
+        <p>
+</blockquote>
+</div>
+
+@section scripts{
+    <script>
+        layui.use(['jquery'], function () {
+            var $ = layui.jquery;
+            var $item = $('.blog-header .layui-nav > .layui-nav-item');
+            $item.removeClass('layui-this');
+            $item.each(function (i) {
+                if (i == 2 || i == 5)
+                    $(this).addClass('layui-this');
+            });
+
+        });
+    </script>
+}

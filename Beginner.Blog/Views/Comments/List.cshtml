@@ -1,0 +1,93 @@
+﻿@model Beginner.Blog.Core.PagedList<Beginner.Blog.Models.Comment>
+@{
+    ViewBag.Title = "分类列表";
+    Layout = "~/Views/Shared/_ManageLayoutPage.cshtml";
+}
+
+
+
+<div class="blog-manage-table table-responsive">
+    <table class="table table-hover table-striped table-bordered">
+        <thead>
+            <tr>
+                <th style="text-align:center; width:50px;">ID</th>
+                <th>文章名称</th>
+                <th>内容</th>
+                <th>创建时间</th>
+               
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Items != null && Model.Items.Count > 0)
+            {
+                foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td style="text-align:center;">@item.Id</td>
+                        <td>@item.Article.Title</td>
+                        <td>@Html.Raw(item.CommentText)</td>
+                        <td>@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                    
+                        <td>
+                         
+                            <a href="javascript:;" data-id="@item.Id" data-options="del" data-name="@item.Id">删除</a>
+                        </td>
+                    </tr>
+                                }
+                            }
+                            else
+                            {
+
+                                <tr>
+                                    <td style="text-align:center;" colspan="6">暂无数据</td>
+                                </tr>
+                                    }
+</tbody>
+    </table>
+    <div class="blog-manage-page">
+        <div id="page" style="padding-left:20px;"></div>
+    </div>
+</div>
+@section scripts{
+    <script>
+        layui.use(['layer'], function () {
+            var layer = layui.layer
+            , $ = layui.jquery;
+
+            $('a[data-options=del]').each(function () {
+                var $this = $(this);
+
+                $this.on('click', function () {
+                    var id = $this.data('id');
+                    var name = $this.data('name');
+                    var msg = '你真的要把  <span style="color:red;">' + name + '</span> 给删除吗？<img src="' + location.origin + '/Plugins/layui/images/face/4.gif" alt="[可怜]">'
+                    var title = '萌萌的提示<img src="' + location.origin + '/Plugins/layui/images/face/7.gif" alt="[害羞]">'
+                    layer.confirm(msg, { icon: 3, title: title }, function (index) {
+                        var params = {
+                            t: Math.random(),
+                            id: id
+                        };
+                        $.post('@Url.Action("Delete", "Comments")', params, function (result) {
+                            if (result.success) {
+                                layer.msg(result.message, { icon: 1 }, function (index) {
+                                    location.reload();
+                                });
+                            }
+                            else {
+                                layer.msg(result.message, { icon: 2 });
+                            }
+
+                        }, 'json');
+                        layer.close(index);
+                    });
+                });
+            });
+            var $item = $('.layui-nav > .layui-nav-item');
+            $item.removeClass('layui-this').eq(2).addClass('layui-this');
+
+
+        });
+
+    </script>
+}

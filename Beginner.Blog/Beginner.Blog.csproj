@@ -161,6 +161,7 @@
     <Content Include="Images\login-bg.jpg" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\play.png" />
+    <Content Include="Images\qrcode.jpg" />
     <Content Include="Plugins\bootstrap\bootstrap.min.css" />
     <Content Include="Plugins\layui\css\layui.css" />
     <Content Include="Plugins\layui\css\mobile.css" />

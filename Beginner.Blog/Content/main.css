@@ -405,3 +405,21 @@ button {
         display: none;
     }
 }
+
+	
+  
+footer{
+    margin-top:20px;
+    background-color:#393d49;
+	padding:50px  0;
+	color:#f8f8f8;
+}
+footer a{
+    color:#f8f8f8;
+}
+footer .qrcode{
+  position:absolute;
+  right:50px;
+  top:-40px;
+  height:80px;
+}

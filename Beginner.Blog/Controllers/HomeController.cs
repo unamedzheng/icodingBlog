@@ -133,7 +133,7 @@ namespace Beginner.Blog.Controllers
 
             if (pages.Items.Count > 0)
                 ViewBag.Highlight = tagName;
-            return View("List", pages);
+            return View("Index", pages);
         }
         //分类
         public ActionResult CategorySearch(string categoryName)
@@ -141,7 +141,7 @@ namespace Beginner.Blog.Controllers
             var pages = GetList(new SearchInfo(1) { CategoryName = categoryName });
             if (pages.Items.Count > 0)
                 ViewBag.Highlight = categoryName;
-            return View("List", pages);
+            return View("Index", pages);
         }
 
         //文章评论

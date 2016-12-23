@@ -46,17 +46,16 @@
         </ul>
     </nav>
     <nav>
-        <blockquote class="layui-elem-quote" style="margin-bottom:0;">阅读排行</blockquote>
+        <blockquote class="layui-elem-quote" style="margin-bottom:0;">资源链接</blockquote>
         <ul>
-            @if (tops != null && tops.Count > 0)
-            {
-                foreach (var item in tops)
-                {
-                    <li>
-                        <a title="@item.Title" href="@Url.Action("Detail", "Home", new { articleId = item.Id })">@item.Title</a>
-                    </li>
-                }
-            }
+            
+            <li><a href="https://scratch.mit.edu/">scratch</a></li>
+            <li><a href="https://www.arduino.cc/">ardunio</a></li>
+            <li><a href="https://www.raspberrypi.org/">raspberry pi</a></li>
+            <li><a href="https://www.python.org">python</a></li>
+            <li><a href="https://www.codeclubworld.org/">codeclub</a></li>
+            <li><a href="https://code.org/">code.org</a></li>
+          
         </ul>
     </nav>
 </div>

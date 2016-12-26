@@ -81,7 +81,7 @@ namespace Beginner.Blog.Controllers
 
             var pages = GetList(searchInfo, false);
             var items = pages.Items;
-            var list = items.Select(p => { return new { p.Title, p.IsTop, CreateTime = p.CreateTime.ToString("yyyy-MM-dd HH:mm"), p.Id }; });
+            var list = items.Select(p => { return new { p.Title, p.IsTop, CreateTime = p.CreateTime.ToString("yyyy-MM-dd HH:mm"), p.Id ,p.Video,p.ImageUrl}; });
 
             return Json(new { data = list, page = pages.TotalPages }, JsonRequestBehavior.AllowGet);
         }
@@ -93,7 +93,14 @@ namespace Beginner.Blog.Controllers
             ViewBag.Highlight = keywork;
             return View("index", pages);
         }
-       
+        public ActionResult videoSearch(string keywork)
+        {
+            var pages = GetList(new SearchInfo(1) { Keywork = keywork });
+
+            ViewBag.Highlight = keywork;
+            return View("Videos", pages);
+        }
+
         //文章详情
         public ActionResult Detail(string articleId)
         {

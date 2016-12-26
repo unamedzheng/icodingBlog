@@ -11,7 +11,7 @@
     <nav>
         <blockquote class="layui-elem-quote">搜索</blockquote>
         <div style="padding:0 5px;">
-            <form action="@Url.Action("Search","Home")">
+            <form action="@Url.Action("videoSearch","Home")">
                 <input type="text" name="keywork" required lay-verify="required" placeholder="输入关键字按回车进行搜索.." autocomplete="off" class="layui-input">
             </form>
         </div>
@@ -106,7 +106,7 @@
             $item.removeClass('layui-this');
 
             $item.each(function (i) {
-                if (i == 0 || i == 3)
+                if (i == 1 || i == 4)
                     $(this).addClass('layui-this');
             });
 
@@ -116,7 +116,7 @@
             }
             if(@Model.TotalPages > 1){
                 flow.load({
-                    elem: '#list' //指定列表容器
+                    elem: '#imglist' //指定列表容器
                     , isAuto: false
                     , done: function (page, next) { //到达临界点（默认滚动触发），触发下一页
                         var lis = [];
@@ -125,9 +125,16 @@
                         $.getJSON('@Url.Action("AJaxLoadList","Home")?page=' + page+'&p='+p, function (res) {
                             //假设你的列表返回在data集合中
                             layui.each(res.data, function (index, item) {
-                                lis.push('<li> <h2> <a title="' + item.Title + '" href="' + location.origin + '/detail-' + item.Id + '.html">' +
-                                    item.Title + '</a></h2><span class="blog-main-item-time">' + item.CreateTime + '</span></li>');
+                                if(item.Video=='' || item.Video==undefined || item.Video==null){}
+                                else{
+                                    var htmlstr= '<li><div class="imgbox"><a title="'+item.Title+'" href="/detail-' + item.Id + '">' +
+                                                '<img class="img-responsive" src="'+item.ImageUrl+'" /><img class="play" src="/Images/play.png" /> </a> </div> ' +                         
+                                                 '<div class="title ">'+item.Title.substr(0,5)+
+                                                ' <div class="createtime">'+item.CreateTime+'</div></li>' ;
+                                                lis.push(htmlstr);
+                                }
                             });
+
                             //执行下一页渲染，如果不存在数据，则告诉flow已经没有更多
                             next(lis.join(''), res.page === page ? 0 : page);
                         });

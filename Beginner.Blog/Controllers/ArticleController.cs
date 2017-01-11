@@ -103,8 +103,9 @@ namespace Beginner.Blog.Controllers
                 MetaTitle = model.MetaTitle,
                 MetaKeywords = model.MetaKeywords,
                 MetaDescription = model.MetaDescription,
-                Video = model.Video,
+                VideoSrc = model.VideoSrc,
                 ImageUrl = model.ImageUrl
+                
             };
 
             _articleService.Insert(article);
@@ -162,7 +163,8 @@ namespace Beginner.Blog.Controllers
             article.MetaKeywords = model.MetaKeywords;
             article.MetaDescription = model.MetaDescription;
             article.ImageUrl = model.ImageUrl;
-
+            article.Video = model.Video;
+            article.VideoSrc = model.VideoSrc;
             _articleRepository.Update(article);
 
             return RedirectToAction("List");

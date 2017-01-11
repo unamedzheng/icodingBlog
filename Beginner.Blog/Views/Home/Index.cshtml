@@ -160,7 +160,7 @@
                         $.getJSON('@Url.Action("AJaxLoadList","Home")?page=' + page+'&p='+p, function (res) {
                             //假设你的列表返回在data集合中
                             layui.each(res.data, function (index, item) {
-                                lis.push('<li> <h2> <a title="' + item.Title + '" href="' + location.origin + '/detail-' + item.Id + '.html">' +
+                                lis.push('<li> <h2> <a title="' + item.Title + '" href="' + location.origin + '/detail-' + item.Id + '">' +
                                     item.Title + '</a></h2><span class="blog-main-item-time">' + item.CreateTime + '</span></li>');
                             });
                             //执行下一页渲染，如果不存在数据，则告诉flow已经没有更多

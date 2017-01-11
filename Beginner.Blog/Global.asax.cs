@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Beginner.Blog.Core.Email;
+using System.Web.Http;
+using System.Web.Routing;
 
 namespace Beginner.Blog
 {
@@ -19,6 +21,8 @@ namespace Beginner.Blog
             AutoFacBootStrapper.Register();
             //初始化邮件
             EmailServiceFactory.InitializeEmailServiceFactory(new SmtpService());
+
+            GlobalConfiguration.Configure(WebApiConfig.Register);
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);

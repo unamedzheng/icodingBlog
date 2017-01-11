@@ -228,6 +228,7 @@ namespace Beginner.Blog.Controllers
         /// <returns></returns>
         private PagedList<Article> GetList(SearchInfo info, bool isLoadSideInfo = true)
         {
+
             var pageSize = 15;//默认
             var setting = Configs.ConfigHelper.GetBasicConfig();
             if (setting != null)

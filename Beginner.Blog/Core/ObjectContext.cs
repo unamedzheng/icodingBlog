@@ -239,5 +239,9 @@ namespace Beginner.Blog.Core
         }
 
         #endregion
+
+        public System.Data.Entity.DbSet<Beginner.Blog.Models.Article> Articles { get; set; }
+
+        public System.Data.Entity.DbSet<Beginner.Blog.Models.Category> Categories { get; set; }
     }
 }

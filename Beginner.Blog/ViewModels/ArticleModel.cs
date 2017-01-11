@@ -24,6 +24,10 @@ namespace Beginner.Blog.ViewModels
         /// <summary>
         /// 视频
         /// </summary>
+        public string VideoSrc { get; set; }
+        /// <summary>
+        /// 视频地址
+        /// </summary>
         public string Author { get; set; }
         /// <summary>
         /// 是否置顶

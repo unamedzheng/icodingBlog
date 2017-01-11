@@ -9,7 +9,7 @@ namespace Beginner.Blog.Core
     /// 分页结果集
     /// </summary>
     /// <typeparam name="TEntity">实体对象</typeparam>
-    public class PagedList<TEntity> where TEntity : BaseEntity
+    public class PagedList<TEntity> where TEntity : BaseEntity  
     {
         /// <summary>
         /// 当前页码

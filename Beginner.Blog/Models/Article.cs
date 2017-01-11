@@ -21,6 +21,7 @@ namespace Beginner.Blog.Models
         /// 视频
         /// </summary>
         public string Video { get; set; }
+        public string VideoSrc { get; set; }
         /// <summary>
         /// 内容
         /// </summary>

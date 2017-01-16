@@ -69,5 +69,6 @@ namespace Beginner.Blog.ViewModels
         /// <summary>
         /// 图片
         /// </summary>
+        public string FileUrl { get; set; }
     }
 }

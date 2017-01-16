@@ -38,83 +38,88 @@
                <img src="@Model.ImageUrl" />
             </div>
         }
-    
+  
 
+            <article class="blog-detail-content">
+                @Html.Raw(Model.Content)
+            </article>
+    @if (Model.FileUrl != null)
+    {
+        <blockquote class="layui-elem-quote layui-quote-nm ">
+            <a href="@Model.FileUrl"><label id="fileName"  name="fileName">点击下载附件</label></a>
+        </blockquote>
+    }
 
-    <article class="blog-detail-content">
-        @Html.Raw(Model.Content)
-    </article>
-
-    <blockquote class="layui-elem-quote layui-quote-nm">
-        <p style="margin-bottom:8px;">
-            分类：
-            <a href="@Url.Action("CategorySearch","Home",new { categoryName=Html.Encode(Model.Category.CategoryName)})">@Model.Category.CategoryName</a>
-        </p>
-        <p>
-            标签：
-            @{
+            <blockquote class="layui-elem-quote layui-quote-nm">
+                <p style="margin-bottom:8px;">
+                    分类：
+                    <a href="@Url.Action("CategorySearch","Home",new { categoryName=Html.Encode(Model.Category.CategoryName)})">@Model.Category.CategoryName</a>
+                </p>
+                <p>
+                    标签：
+                    @{
                 string[] tags = null;
 
                 if (!string.IsNullOrEmpty(Model.Tags))
                 {
                     tags = Model.Tags.Split(',');
-                    <span>
-                        @for (int i = 0; i < tags.Length; i++)
+            <span>
+                @for (int i = 0; i < tags.Length; i++)
                 {
-                            <a href="@Url.Action("Tag", "Home", new { tagName = Html.Encode(tags[i]) })">@tags[i]</a>
+                        <a href="@Url.Action("Tag", "Home", new { tagName = Html.Encode(tags[i]) })">@tags[i]</a>
                         }
-                    </span>
+            </span>
                 }
-            }
-        </p>
-    </blockquote>
-    <blockquote class="layui-elem-quote" id="comment-m">查看评论</blockquote>
-    <div class="blog-detail-comment-box">
-        @using (Html.BeginForm("Comment", "Home", FormMethod.Post, new { @class = "layui-form layui-form-pane" }))
-        {
-            @Html.AntiForgeryToken();
-            <input type="hidden" name="articleId" value="@Model.Id" />
-            <div class="layui-form-item">
-                <label class="layui-form-label">昵称</label>
-                <div class="layui-input-block">
-                    <input type="text" name="nickname" required
-                           lay-verify="nickname" placeholder="这里留下你的大名哦 ^_^ " value="@ViewBag.NickName" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">电子邮箱</label>
-                <div class="layui-input-block">
-                    <input type="text" name="email" lay-verify="email" placeholder="这里留下你的邮箱哦，方便我们能联系到你吖 " value="@ViewBag.Email" autocomplete="off" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">评论内容</label>
-                <div class="layui-input-block">
-                    <textarea id="comment-text" name="commentText" required lay-verify="commentText" style="display: none;"></textarea>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <button class="layui-btn" lay-submit lay-filter="formDemo" id="comment-submit">发表</button>
-            </div>
-        }
-        <ul class="blog-detail-comment-list">
-            @if (comments != null && comments.Count > 0)
-            {
-                foreach (var item in comments)
+                    }
+                </p>
+            </blockquote>
+            <blockquote class="layui-elem-quote" id="comment-m">查看评论</blockquote>
+            <div class="blog-detail-comment-box">
+                @using (Html.BeginForm("Comment", "Home", FormMethod.Post, new { @class = "layui-form layui-form-pane" }))
                 {
-                    <li>
-                        <div class="blog-detail-comment-user">
-                            <span class="blog-detail-comment-user-nickname">@item.Nickname</span>
-                            <span class="blog-detail-comment-user-time">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</span>
+                    @Html.AntiForgeryToken();
+                    <input type="hidden" name="articleId" value="@Model.Id" />
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">昵称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="nickname" required
+                                   lay-verify="nickname" placeholder="这里留下你的大名哦 ^_^ " value="@ViewBag.NickName" autocomplete="off" class="layui-input">
                         </div>
-                        <div class="blog-detail-comment-content">
-                            @Html.Raw(item.CommentText)
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">电子邮箱</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="email" lay-verify="email" placeholder="这里留下你的邮箱哦，方便我们能联系到你吖 " value="@ViewBag.Email" autocomplete="off" class="layui-input">
                         </div>
-                    </li>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">评论内容</label>
+                        <div class="layui-input-block">
+                            <textarea id="comment-text" name="commentText" required lay-verify="commentText" style="display: none;"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo" id="comment-submit">发表</button>
+                    </div>
                 }
-            }
-        </ul>
-    </div>
+                <ul class="blog-detail-comment-list">
+                    @if (comments != null && comments.Count > 0)
+                    {
+                        foreach (var item in comments)
+                        {
+                            <li>
+                                <div class="blog-detail-comment-user">
+                                    <span class="blog-detail-comment-user-nickname">@item.Nickname</span>
+                                    <span class="blog-detail-comment-user-time">@item.CreateTime.ToString("yyyy-MM-dd HH:mm")</span>
+                                </div>
+                                <div class="blog-detail-comment-content">
+                                    @Html.Raw(item.CommentText)
+                                </div>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
 </div>
 @section scripts{
     <script>

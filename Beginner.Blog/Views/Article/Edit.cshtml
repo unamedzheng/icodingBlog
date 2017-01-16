@@ -115,10 +115,17 @@
     <div class="layui-form-item">
         <label class="layui-form-label">标题图片</label>
         <div class="site-demo-upbar">
-            <input name="file" class="layui-upload-file" id="test" type="file">
+            <input name="file" class="layui-upload-file" lay-ext="jpg|png|gif" id="test" type="file">
         </div>
         <img id="LAY_demo_upload" style="width:200px" src="@Model.ImageUrl">
         <input id="imageUrl" type="hidden" name="imageUrl" value="@Model.ImageUrl" />
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">附件</label>
+        <input name="file" type="file" class="layui-upload-file" lay-title="更改附件"  lay-ext="jpg|png|gif|zip|rar" id="uploadfile">      
+        <a href="@Model.FileUrl"><label id="fileName" name="fileName">附件</label></a>
+        <input id="fileUrl" type="hidden" name="fileUrl" value="@Model.FileUrl" />
     </div>
 
     <div class="layui-form-item">
@@ -154,7 +161,7 @@
                 },
                 content: function (value) {
                     if (value === '') return '既然写文章、发博客，总得写点什么吧？';
-                    if (value.length <= 30) return '你写的字数太少啦，起码也得写上30个字符吧。';
+                    if (value.length <= 5) return '你写的字数太少啦，起码也得写上5个字符吧。';
                 }
 
             });
@@ -163,6 +170,7 @@
             layedit.build('content', {
                 height: 600,
                 uploadImage: {
+
                     url: '@Url.Action("UploadImage", "Upload")'
                 }
             });
@@ -194,8 +202,19 @@
                           document.getElementById("imageUrl").value = res.data.src;
                       }
                     });
+               layui.upload({
+                      url: '@Url.Action("UploadImage", "Upload")'
+                       , elem: '#uploadfile' //指定原始元素，默认直接查找class="layui-upload-file"
+                           , method: 'post' //上传接口的http类型
+                          , success: function (res) {
+                              document.getElementById("fileName").innerText = '上传附件成功';
+                              document.getElementById("fileUrl").value = res.data.src;
+                       }
+               });
                 });
-
+       
+         
+       
        
     </script>
 }

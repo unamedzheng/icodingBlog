@@ -48,8 +48,6 @@ namespace Beginner.Blog.Controllers
                 var path = Path.Combine(fileSavePath, newFileName);
                 //保存文件
                 curFile.SaveAs(path);
-
-                var resourcesSystemUrl = ConfigurationManager.AppSettings["ResourcesSystemUrl"];
                 
                 return Json(new
                 {

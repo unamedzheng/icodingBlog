@@ -86,6 +86,7 @@ namespace Beginner.Blog.Models
         /// <summary>
         /// 图片
         /// </summary>
+        public string FileUrl { get; set; }
         public virtual ICollection<Comment> Comments
         {
             get { return _comments ?? (_comments = new List<Comment>()); }

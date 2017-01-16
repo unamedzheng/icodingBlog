@@ -104,6 +104,8 @@ namespace Beginner.Blog.Controllers
                 MetaKeywords = model.MetaKeywords,
                 MetaDescription = model.MetaDescription,
                 VideoSrc = model.VideoSrc,
+                Video=model.Video,
+                FileUrl=model.FileUrl,
                 ImageUrl = model.ImageUrl
                 
             };
@@ -165,6 +167,7 @@ namespace Beginner.Blog.Controllers
             article.ImageUrl = model.ImageUrl;
             article.Video = model.Video;
             article.VideoSrc = model.VideoSrc;
+            article.FileUrl = model.FileUrl;
             _articleRepository.Update(article);
 
             return RedirectToAction("List");

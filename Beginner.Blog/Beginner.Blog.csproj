@@ -169,6 +169,7 @@
     <Content Include="Content\login.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\playVideo.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\login-bg-1.jpg" />
     <Content Include="Images\login-bg.jpg" />
@@ -303,6 +304,8 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\play-video.1.0.6.min.js" />
+    <Content Include="Scripts\playvideo.js" />
     <Content Include="Web.config" />
     <Content Include="Views\About\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />

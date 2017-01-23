@@ -2,15 +2,15 @@
 }
 #imglist li{
     padding:13px;
-    width:30%;
+    width:300px;
     float:left;
 }
 #imglist li .imgbox{
-    height:150px;
+    height:180px;
 }
 #imglist li img{
     width:95%;
-    height:150px;
+   height:100%;
 
 }
 #imglist li .title{
